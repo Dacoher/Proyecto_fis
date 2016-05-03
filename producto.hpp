@@ -22,4 +22,4 @@ class producto{
     unsigned& get_id(void);
     bool act_valoracion(unsigned);
     bool act_descripcion(std::string);
-}
+};

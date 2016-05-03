@@ -24,7 +24,7 @@ producto::~producto(void){
 }
 
 void producto::cargar_producto(char nombre_archivo[]){
-  ifstream file;
+  std::ifstream file;
   unsigned id = 0;
   unsigned price_tag = 0;
   unsigned val_inicial = 0;
@@ -35,9 +35,9 @@ void producto::cargar_producto(char nombre_archivo[]){
   if(file.is_open()){
     file >> (unsigned &) id;
     file.ignore();
-    file >> (unsigned &) price_tag
+    file >> (unsigned &) price_tag;
     file.ignore();
-    file >> (unsigned &) val_inicial
+    file >> (unsigned &) val_inicial;
     file.ignore();
     file >> (std::string &) description;
     file.close();
@@ -62,8 +62,9 @@ unsigned& producto::get_id(void){
   return product_id_;
 }
 
-bool producto::act_valoracio(unsigned val){
-  dummy = valoracion_;
+bool producto::act_valoracion(unsigned val){
+
+  unsigned dummy = valoracion_;
   n_comparaciones_++;
   valoracion_ = (valoracion_ + val) / n_comparaciones_;
   if(valoracion_ != dummy){
@@ -77,7 +78,7 @@ bool producto::act_valoracio(unsigned val){
 bool producto::act_descripcion(std::string descripcion){
   if(descripcion.empty()){
     std::cout << "Introduzca la nueva descripcion del producto" << std::endl;
-    cin >> descripcion_;
+    std::cin >> descripcion_;
   }
   else{
     descripcion_ = descripcion;
