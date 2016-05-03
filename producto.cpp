@@ -64,7 +64,8 @@ unsigned& producto::get_id(void){
 
 bool producto::act_valoracio(unsigned val){
   dummy = valoracion_;
-  valoracion_ = (valoracion_ + val) / (n_ + 1);
+  n_comparaciones_++;
+  valoracion_ = (valoracion_ + val) / n_comparaciones_;
   if(valoracion_ != dummy){
     return true;
   }
