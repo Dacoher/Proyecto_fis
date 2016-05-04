@@ -1,9 +1,13 @@
-#pragma once
+#ifndef PRODUCTO_H
+#define PRODUCTO_H
+
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <sstream>
 
 //smelg   000webhost
-//prueba
+
 class producto{
   private:
     unsigned product_id_;
@@ -11,15 +15,24 @@ class producto{
     unsigned valoracion_;
     unsigned n_comparaciones_;
     std::string descripcion_;
+    std::string name_;
+
   public:
     producto(void);
     producto(char []);
+    producto(std::ifstream& textfile);
     ~producto(void);
 
-    void cargar_producto(char []);
+    void exportar_producto(std::ofstream & textfile);
 
     unsigned& get_precio(void);
     unsigned& get_id(void);
+    unsigned& get_valoracion();
+    std::string get_name();
+    std::string get_descripcion();
     bool act_valoracion(unsigned);
     bool act_descripcion(std::string);
+    bool act_name(std::string);
 };
+
+#endif

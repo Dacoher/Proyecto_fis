@@ -4,7 +4,8 @@ producto::producto():
 product_id_(),
 precio_(),
 valoracion_(),
-descripcion_(){
+descripcion_(),
+n_comparaciones_(){
 
 }
 
@@ -12,44 +13,43 @@ producto::producto(char nombre_archivo[]):
 product_id_(),
 precio_(),
 valoracion_(),
-descripcion_(){
+descripcion_(),
+n_comparaciones_(){
+    std::ifstream textfile;
+    textfile.open(nombre_archivo);
+    if(textfile.is_open()){
+        textfile>>product_id_>>precio_>>valoracion_>>n_comparaciones_;
+        std::getline(textfile,name_,':');
+        std::getline(textfile, descripcion_,':');
+    }
+    else{
+        std::cerr<<"Se ha producido un error al leer archivo"<<std::endl;
+    }
 
+}
+
+producto::producto(std::ifstream& textfile){
+    if(textfile.is_open()){
+        textfile>>product_id_>>precio_>>valoracion_>>n_comparaciones_;
+        std::getline(textfile,name_,':');
+        std::getline(textfile, descripcion_,':');
+    }
+    else{
+        std::cerr<<"Se ha producido un error al leer archivo"<<std::endl;
+    }
 }
 
 producto::~producto(void){
   product_id_ = 0;
   precio_ = 0;
   valoracion_ = 0;
+  n_comparaciones_ = 0;
   descripcion_.clear();
+  name_.clear();
 }
 
-void producto::cargar_producto(char nombre_archivo[]){
-  std::ifstream file;
-  unsigned id = 0;
-  unsigned price_tag = 0;
-  unsigned val_inicial = 0;
-  std::string description = "none";
-
-  file.open(nombre_archivo);
-
-  if(file.is_open()){
-    file >> (unsigned &) id;
-    file.ignore();
-    file >> (unsigned &) price_tag;
-    file.ignore();
-    file >> (unsigned &) val_inicial;
-    file.ignore();
-    file >> (std::string &) description;
-    file.close();
-  }
-  else{
-    std::cout << "Error en la apertura del fichero (no existe)" << std::endl;
-  }
-
-  get_id() = id;
-  get_precio() = price_tag;
-  act_valoracion(val_inicial);
-  act_descripcion(description);
+void producto::exportar_producto(std::ofstream& textfile){
+    textfile<<product_id_<<":"<<precio_<<":"<<valoracion_<<":"<<n_comparaciones_<<":"<<name_<<":"<<descripcion_<<":"<<std::endl;
 }
 
 
@@ -62,12 +62,24 @@ unsigned& producto::get_id(void){
   return product_id_;
 }
 
-bool producto::act_valoracion(unsigned val){
+unsigned& producto::get_valoracion(){
+    return valoracion_;
+}
 
+std::string producto::get_name(){
+    return name_;
+}
+
+std::string producto::get_descripcion(){
+    return descripcion_;
+}
+
+bool producto::act_valoracion(unsigned val){
   unsigned dummy = valoracion_;
-  n_comparaciones_++;
-  valoracion_ = (valoracion_ + val) / n_comparaciones_;
+  valoracion_ = (valoracion_ + val) / (n_comparaciones_ + 1);
+
   if(valoracion_ != dummy){
+    n_comparaciones_++;
     return true;
   }
   else{
@@ -82,5 +94,15 @@ bool producto::act_descripcion(std::string descripcion){
   }
   else{
     descripcion_ = descripcion;
+  }
+}
+
+bool producto::act_name(std::string name){
+  if(name.empty()){
+    std::cout << "Introduzca el nuevo nombre del producto" << std::endl;
+    std::cin >> name_;
+  }
+  else{
+    name_ = name;
   }
 }
