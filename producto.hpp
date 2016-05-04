@@ -14,6 +14,7 @@ class producto{
     unsigned precio_;
     unsigned valoracion_;
     unsigned n_comparaciones_;
+    unsigned stock_;
     std::string descripcion_;
     std::string name_;
 
@@ -24,7 +25,7 @@ class producto{
     ~producto(void);
 
     void exportar_producto(std::ofstream & textfile);
-
+    unsigned& get_stock();
     unsigned& get_precio(void);
     unsigned& get_id(void);
     unsigned& get_valoracion();

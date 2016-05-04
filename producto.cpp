@@ -5,7 +5,8 @@ product_id_(),
 precio_(),
 valoracion_(),
 descripcion_(),
-n_comparaciones_(){
+n_comparaciones_(),
+stock_(){
 
 }
 
@@ -18,9 +19,12 @@ n_comparaciones_(){
     std::ifstream textfile;
     textfile.open(nombre_archivo);
     if(textfile.is_open()){
-        textfile>>product_id_>>precio_>>valoracion_>>n_comparaciones_;
+        textfile>>product_id_>>precio_>>valoracion_>>n_comparaciones_>>stock_;
         std::getline(textfile,name_,':');
         std::getline(textfile, descripcion_,':');
+        textfile.ignore();
+        while(textfile.peek()==10)
+          textfile.ignore();
     }
     else{
         std::cerr<<"Se ha producido un error al leer archivo"<<std::endl;
@@ -30,13 +34,19 @@ n_comparaciones_(){
 
 producto::producto(std::ifstream& textfile){
     if(textfile.is_open()){
-        textfile>>product_id_>>precio_>>valoracion_>>n_comparaciones_;
+        textfile>>product_id_>>precio_>>valoracion_>>n_comparaciones_>>stock_;
         std::getline(textfile,name_,':');
         std::getline(textfile, descripcion_,':');
+        textfile.ignore();
+        while(textfile.peek()==10)
+          textfile.ignore();
     }
     else{
         std::cerr<<"Se ha producido un error al leer archivo"<<std::endl;
     }
+    std::cout<<product_id_<<":"<<precio_<<":"<<valoracion_<<":"<<n_comparaciones_<<":"<<stock_<<":"<<name_<<":"<<descripcion_<<":"<<std::endl;
+
+
 }
 
 producto::~producto(void){
@@ -44,12 +54,13 @@ producto::~producto(void){
   precio_ = 0;
   valoracion_ = 0;
   n_comparaciones_ = 0;
+  stock_=0;
   descripcion_.clear();
   name_.clear();
 }
 
 void producto::exportar_producto(std::ofstream& textfile){
-    textfile<<product_id_<<":"<<precio_<<":"<<valoracion_<<":"<<n_comparaciones_<<":"<<name_<<":"<<descripcion_<<":"<<std::endl;
+    textfile<<product_id_<<":"<<precio_<<":"<<valoracion_<<":"<<n_comparaciones_<<":"<<stock_<<":"<<name_<<":"<<descripcion_<<":"<<std::endl;
 }
 
 
@@ -64,6 +75,10 @@ unsigned& producto::get_id(void){
 
 unsigned& producto::get_valoracion(){
     return valoracion_;
+}
+
+unsigned& producto::get_stock(){
+    return stock_;
 }
 
 std::string producto::get_name(){
@@ -95,6 +110,7 @@ bool producto::act_descripcion(std::string descripcion){
   else{
     descripcion_ = descripcion;
   }
+  return true;
 }
 
 bool producto::act_name(std::string name){
@@ -105,4 +121,5 @@ bool producto::act_name(std::string name){
   else{
     name_ = name;
   }
+  return true;
 }

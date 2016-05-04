@@ -1,8 +1,8 @@
 CCX=g++
 CXXFLAGS=-g
 
-OBJS =  main.o producto.o
+OBJS =  m.o producto.o catalogo.o
 
 all: ${OBJS}
-	$(CCX) $(CXXFLAGS) -o hash ${OBJS}
+	$(CCX) $(CXXFLAGS) -o catalogo ${OBJS}
 	rm  *.o
