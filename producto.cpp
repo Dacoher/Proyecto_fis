@@ -44,7 +44,7 @@ producto::producto(std::ifstream& textfile){
     else{
         std::cerr<<"Se ha producido un error al leer archivo"<<std::endl;
     }
-    std::cout<<product_id_<<":"<<precio_<<":"<<valoracion_<<":"<<n_comparaciones_<<":"<<stock_<<":"<<name_<<":"<<descripcion_<<":"<<std::endl;
+    std::cout<<product_id_<<" "<<precio_<<" "<<valoracion_<<" "<<n_comparaciones_<<" "<<stock_<<" "<<name_<<":"<<descripcion_<<":"<<std::endl;
 
 
 }
