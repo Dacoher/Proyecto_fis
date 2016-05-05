@@ -6,7 +6,7 @@ catalogo::catalogo(void){
   file = "catalogo.txt";
   std::cout << file << std::endl;
   std::ifstream catalog;
-  catalog.open (file);
+  catalog.open (file.c_str());
   while (!catalog.eof()){
     producto aux(catalog);
     listado_productos_.push_back(aux);
