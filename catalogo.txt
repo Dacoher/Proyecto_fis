@@ -1,6 +1,3 @@
 10 25 30 6 2Televisor:Muy bueno:
-666 1 0 0 1cristian: esclavo sexual:
-777 0 0 0 1Isaac:afa df:
-999 999999 0 0 1Iru: El Mejor:
-9999 244 0 0 1Federico: A muy buen precio:
-34534 5 0 0 345Pizza:Pepperoni oo:
+11 23 45 4 1Iphone:Smartphone apple:
+12 12 20 3 1Procesador I7:Procesador 3 generación:
