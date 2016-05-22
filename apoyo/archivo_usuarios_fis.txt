@@ -1,0 +1,4 @@
+id-usuario usuario:contraseña:direccion: (id-producto cantidad)* : (id-pedido (ariculo cantidad)+ :)* ;
+
+
+

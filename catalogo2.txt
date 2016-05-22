@@ -1,4 +1,0 @@
-1:10:5:2:100: iphone: smartphone:
-3:46:30:8:56: gorila pod:tripode de tipo araña:
-29:45:20:4:90: gopro: caamara deportiva de última generación:
-3:463441:30:8:5612: bic: bolígrafo:

@@ -1,0 +1,22 @@
+MODO USUARIO
+    _ADDCART
+    _SHOW_ORDER
+    _SHOW_CART
+    _ORDER
+    _RM_CART
+
+MODO ADMIN
+    ADDPROD
+    EDITPROD
+    _RMVPROD
+    _CLOSE
+    
+COMUN
+    _CONNECT
+    _SHUTDOWN
+    _CHPASS
+    _GETCAT
+    _GETPROD
+    _CHDIR
+    
+    

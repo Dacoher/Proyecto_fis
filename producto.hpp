@@ -29,6 +29,7 @@ class producto{
     unsigned& get_precio(void);
     unsigned& get_id(void);
     unsigned& get_valoracion();
+    unsigned get_valoracion_final();
     std::string get_name();
     std::string get_descripcion();
     bool act_valoracion(unsigned);

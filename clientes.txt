@@ -1,0 +1,2 @@
+1 20admin:admin:geneto::;
+0 21user:user:lalaguna::;

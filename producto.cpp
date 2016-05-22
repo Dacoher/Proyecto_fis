@@ -44,7 +44,7 @@ producto::producto(std::ifstream& textfile){
     else{
         std::cerr<<"Se ha producido un error al leer archivo"<<std::endl;
     }
-    std::cout<<product_id_<<" "<<precio_<<" "<<valoracion_<<" "<<n_comparaciones_<<" "<<stock_<<" "<<name_<<":"<<descripcion_<<":"<<std::endl;
+    //std::cout<<product_id_<<" "<<precio_<<" "<<valoracion_<<" "<<n_comparaciones_<<" "<<stock_<<" "<<name_<<":"<<descripcion_<<":"<<std::endl;
 
 
 }
@@ -60,7 +60,7 @@ producto::~producto(void){
 }
 
 void producto::exportar_producto(std::ofstream& textfile){
-    textfile<<product_id_<<":"<<precio_<<":"<<valoracion_<<":"<<n_comparaciones_<<":"<<stock_<<":"<<name_<<":"<<descripcion_<<":"<<std::endl;
+    textfile<<product_id_<<" "<<precio_<<" "<<valoracion_<<" "<<n_comparaciones_<<" "<<stock_<<name_<<":"<<descripcion_<<":"<<std::endl;
 }
 
 
@@ -71,6 +71,13 @@ unsigned& producto::get_precio(void){
 
 unsigned& producto::get_id(void){
   return product_id_;
+}
+
+unsigned producto::get_valoracion_final(){
+    if(n_comparaciones_==0)
+      return 0;
+    else
+      return valoracion_/n_comparaciones_;
 }
 
 unsigned& producto::get_valoracion(){
